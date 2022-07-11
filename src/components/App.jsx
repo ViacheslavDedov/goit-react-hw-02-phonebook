@@ -1,4 +1,4 @@
-import { Component } from "react";
+import React from "react";
 import { nanoid } from 'nanoid';
 import ContactForm from './ContactForm';
 import Filter from './Filter';
@@ -7,7 +7,7 @@ import css from './App.module.css';
 
 
 
-export class App extends Component {
+class App extends React.Component {
   state = {
     contacts: [
       { id: 'id-1', name: 'Rosie Simpson', number: '459-12-56' },
@@ -15,7 +15,7 @@ export class App extends Component {
       { id: 'id-3', name: 'Eden Clements', number: '645-17-79' },
       { id: 'id-4', name: 'Annie Copeland', number: '227-91-26' },
     ],
-    filter: ''
+    filter: '',
   }
 
   changeFilter = e => {
@@ -57,26 +57,30 @@ export class App extends Component {
   };
 
   render () {
-    const {filter} = this.state;
+    const {contacts, filter} = this.state;
     const visibleContacts = this.newContacts();
 
     return (
       <div className={css.phonebook}>
-        <h1 className={css.phonebook__title}>Phonebook</h1>
+        <h1>Phonebook</h1>
         <ContactForm
           onSubmit={this.addContact}
         />
-        <h2 className={css.phonebook__title}>Contacts</h2>
+        <h2>Contacts</h2>
         <Filter
           value={filter}
           onChange={this.changeFilter}
         />
-        <ContactList
-          contacts={visibleContacts}
-          onDeleteContact={this.delContact}
-        />
+        { contacts.length
+            ? <ContactList
+                contacts={visibleContacts}
+                onDelContact={this.delContact}
+              />
+            : <p className={css.phonebook__message}>Your phonebook is empty !!!</p>
+        }
       </div>
     )
   }
 };
 
+export default App;

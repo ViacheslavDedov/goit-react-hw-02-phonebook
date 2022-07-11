@@ -5,9 +5,9 @@ const ContactList = ({contacts, onDelContact}) => (
   <ul className={css.contacts}>
     {contacts.map(({id, name, number}) => (
       <li key={id} className={css.contacts__item}>
-        <p className={css.contacts__name}>
+        <p>
           {name}:&nbsp; 
-          <span className={css.contacts__number}>
+          <span>
             {number}
           </span>
         </p>
@@ -31,7 +31,7 @@ ContactList.propTypes = {
       number: PropTypes.string.isRequired,
     }),
   ),
-  onDeleteContact: PropTypes.func.isRequired,
+  onDelContact: PropTypes.func.isRequired,
 }
 
 export default ContactList;

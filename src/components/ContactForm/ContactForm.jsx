@@ -1,10 +1,10 @@
-import { Component } from "react";
+import React from "react";
 import css from './ContactForm.module.css';
 
-export default class ContactForm extends Component { 
+class ContactForm extends React.Component { 
 state = {
-  contacts: [],
-  name: ''
+    name: '',
+    number: '',
 }
     
 handleChange = e => {
@@ -67,3 +67,5 @@ render() {
     </form>
     )}
 }
+
+export default ContactForm;
